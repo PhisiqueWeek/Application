@@ -10,7 +10,7 @@ public class Catalogue {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "product_id", nullable = false, length = 40)
+    @Column(name = "id", nullable = false, length = 40)
     private String id;
 
     @ManyToOne(optional = false)

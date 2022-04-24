@@ -32,7 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //Доступ разрешен всем пользователей
                 .antMatchers("/", "/resources/**").permitAll()
                 //Все остальные страницы требуют аутентификации
-                .anyRequest().authenticated()
+                .anyRequest().not().authenticated()
                 .and()
                 //Настройка для входа в систему
                 .formLogin()
