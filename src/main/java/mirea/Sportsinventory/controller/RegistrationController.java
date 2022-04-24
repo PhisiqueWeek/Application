@@ -1,5 +1,7 @@
 package mirea.Sportsinventory.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import mirea.Sportsinventory.entity.Credential;
 import mirea.Sportsinventory.service.CredentialService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,16 +11,20 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
 @Controller
+@RequestMapping("api/queries")
+@Tag(name = "Registration Controller")
 public class RegistrationController {
 
     @Autowired
     private CredentialService credentialService;
 
     @GetMapping("/registration")
+    @Operation(summary = "Открыть форму регистрации")
     public String registration(Model model) {
         model.addAttribute("credentialForm", new Credential());
 
@@ -26,6 +32,7 @@ public class RegistrationController {
     }
 
     @PostMapping("/registration")
+    @Operation(summary = "Добавить данные пользователя")
     public String addCredential(@ModelAttribute("credentialForm") @Valid Credential credentialForm, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "registration";
